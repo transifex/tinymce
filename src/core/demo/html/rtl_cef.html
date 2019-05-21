@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tinymce RTL CEF demo Page</title>
+  </head>
+
+  <body>
+  <h2>Tinymce content editable false Page</h2>
+    <div style="width:50%;margin: 0 auto">
+      <h4>LTR content with LTR direction</h4>
+      <div id="ephox-ui">
+        <div id="tinymce1" style="width: 80%">
+          bla <span contentEditable="false" style="width:20px" dir="ltr" >%(hello)s</span> pla plap lapslf,apsdlfk aspdofk aspdofk
+          asd
+        </div>
+      </div>
+
+      <h4>BIDI content with LTR direction</h4>
+      <div id="ephox-ui">
+        <div id="tinymce2" style="width: 80%">
+          bla الصناعة على الشبكة العالمية انترنيت <span contentEditable="false" style="width:20px" dir="ltr" >%(hello)s</span> pla  الصناعة على الشبكة العالمية انترنيت plap lapslf,apsdlfk aspdofk aspdofk
+          asd
+        </div>
+      </div>
+
+      <!-- dir should be changed by hand to see the correct behaviour since tinymce add dynamicaly the attribute -->
+      <h4>RTL content with LTR direction</h4>
+      <div id="ephox-ui">
+        <div id="tinymce4" style="width: 80%" dir="ltr">
+          طاعات الصناعة على الشبكة العالمية انترنيت <span contentEditable="false" style="width:20px" dir="ltr">%(hello)s</span> ويونيكود، حيث ستتم، على الصعيدين الدولي والمحلي على حد سواء مناقشة سبل استخدام يونكود في النظم القائمة وفيما ي
+        </div>
+      </div>
+
+      <h4>RTL content with RTL direction</h4>
+      <div id="ephox-ui">
+        <div id="tinymce5" style="width: 80%" dir="rtl">
+          طاعات الصناعة على<span contenteditable="true" dir="ltr">%(pla)s</span> الشبكة العالمية انترنيت <span contentEditable="false" style="width:20px" dir="ltr">%(hello)s</span> ويونيكود، حيث ستتم، على الصعيدين الدولي والمحلي على حد سواء مناقشة سبل استخدام يونكود في النظم القائمة وفيما ي
+          asd
+        </div>
+      </div>
+
+      <h4>BIDI content with RTL direction <span class="issue">ISSUE</span></h4>
+      <div id="ephox-ui">
+        <div id="tinymce3" style="width: 80%">
+          bla الصناعة على الشبكة العالمية انترنيت LTR_CONTENT<span contentEditable="false" style="width:20px" dir="ltr" >%(hello)s</span>LTR_CONTENT pla  الصناعة على الشبكة العالمية انترنيت plap lapslf,apsdlfk aspdofk aspdofk
+        </div>
+      </div>
+    </div>
+    <script src="../../../../js/tinymce/tinymce.js"></script>
+    <script src="../../../../scratch/demos/core/demo.js"></script>
+    <script>demos.ContentEditableFalseDemo();</script>
+  </body>
+</html>

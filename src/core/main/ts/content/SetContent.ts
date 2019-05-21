@@ -63,7 +63,7 @@ const setContentString = (editor: Editor, body: HTMLElement, content: string, ar
       content = '<li>' + padd + '</li>';
     }
 
-    forcedRootBlockName = Settings.getForcedRootBlock(editor);
+    forcedRootBlockName = Settings.getRootBlock(editor);
 
     // Check if forcedRootBlock is configured and that the block is a valid child of the body
     if (forcedRootBlockName && editor.schema.isValidChild(body.nodeName.toLowerCase(), forcedRootBlockName.toLowerCase())) {

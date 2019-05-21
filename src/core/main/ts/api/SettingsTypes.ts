@@ -86,6 +86,7 @@ export interface RawEditorSettings {
   fontsize_formats?: string;
   force_hex_style_colors?: boolean;
   forced_root_block?: boolean | string;
+  root_block?: string | '';
   forced_root_block_attrs?: Record<string, string>;
   formats?: Formats;
   gecko_spellcheck?: boolean;

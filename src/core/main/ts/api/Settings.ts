@@ -67,6 +67,11 @@ const getForcedRootBlock = (editor: Editor): string => {
   }
 };
 
+const getRootBlock = (editor: Editor): string => {
+  const block = editor.getParam('root_block', 'div');
+  return block;
+};
+
 const getForcedRootBlockAttrs = (editor: Editor): Record<string, string> => {
   return editor.getParam('forced_root_block_attrs', {});
 };
@@ -201,5 +206,6 @@ export default {
   shouldIndentUseMargin,
   getIndentation,
   getContentCss,
-  getDirectionality
+  getDirectionality,
+  getRootBlock,
 };
