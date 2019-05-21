@@ -4,7 +4,6 @@
  * For LGPL see License.txt in the project root for license information.
  * For commercial licenses see https://www.tiny.cloud/
  */
-
 import { Range, Element } from '@ephox/dom-globals';
 import { Fun, Arr } from '@ephox/katamari';
 import Env from '../api/Env';
@@ -28,8 +27,16 @@ const isContentEditableFalse = NodeType.isContentEditableFalse;
 const getSelectedNode = RangeNodes.getSelectedNode;
 
 const moveToCeFalseHorizontally = (direction: HDirection, editor: Editor, getNextPosFn: (pos: CaretPosition) => CaretPosition, range: Range): Range => {
+  // Changed for RTL issues with Cef nodes
+  const is_rtl = editor.settings.directionality === 'rtl';
+  if (is_rtl && direction === HDirection.Forwards) {
+    direction = HDirection.Backwards;
+  } else if (is_rtl && direction === HDirection.Backwards) {
+    direction = HDirection.Forwards;
+  }
+
   const forwards = direction === HDirection.Forwards;
-  const isBeforeContentEditableFalseFn = forwards ? isBeforeContentEditableFalse : isAfterContentEditableFalse;
+  const isBeforeContentEditableFalseFn = (forwards) ? isBeforeContentEditableFalse : isAfterContentEditableFalse;
 
   if (!range.collapsed) {
     const node = getSelectedNode(range);
@@ -170,11 +177,17 @@ const exitPreBlock = (editor: Editor, direction: HDirection, range: Range): void
 
 const getHorizontalRange = (editor: Editor, forward: boolean): Range => {
   const caretWalker = CaretWalker(editor.getBody());
+
   const getNextVisualCaretPosition = Fun.curry(CaretUtils.getVisualCaretPosition, caretWalker.next);
   const getPrevVisualCaretPosition = Fun.curry(CaretUtils.getVisualCaretPosition, caretWalker.prev);
   let newRange;
+  // Changed for RTL issues with Cef nodes
+  let next_direction = forward;
+  if (editor.settings.directionality === 'rtl') {
+    next_direction = !forward;
+  }
   const direction = forward ? HDirection.Forwards : HDirection.Backwards;
-  const getNextPosFn = forward ? getNextVisualCaretPosition : getPrevVisualCaretPosition;
+  const getNextPosFn = next_direction ? getNextVisualCaretPosition : getPrevVisualCaretPosition;
   const range = editor.selection.getRng();
 
   newRange = moveToCeFalseHorizontally(direction, editor, getNextPosFn, range);

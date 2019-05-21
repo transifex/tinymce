@@ -31,17 +31,3 @@
   outline: 2px solid blue;
 }
 
-.mce-content-body .mce-offscreen-selection {
-  left: auto;
-  right: 0;
-}
-
-*[data-mce-caret] {
-  outline: 1px solid green;
-  position: absolute;
-  left: auto;
-  right: 0;
-  top: 0;
-  margin: 0;
-  padding: 0;
-}

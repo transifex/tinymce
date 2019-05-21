@@ -1,6 +1,14 @@
 TinyMCE - JavaScript Library for Rich Text Editing
 ===================================================
 
+TX flow
+---------
+* Start with "Building TinyMCE" section
+* When you need to contribute, use `grunt start` and use the demos to develop and test features
+* Use `grunt bundle --plugins=noneditable,paste` in the root tinymce folder
+* Copy `tinymce/js/tinymce/tinymce.full.min.js` to the folder we keep our editor
+
+
 Building TinyMCE
 -----------------
 Install [Node.js](https://nodejs.org/en/) on your system.

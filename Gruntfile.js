@@ -814,11 +814,11 @@ module.exports = function (grunt) {
     'unicode',
     'concat',
     'uglify',
-    'less',
+    // 'less',
     'copy',
     'clean:release',
-    'moxiezip',
-    'nugetpack',
+    // 'moxiezip',
+    // 'nugetpack',
     'version'
   ]);
 

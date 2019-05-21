@@ -1,5 +1,5 @@
 // tslint:disable:no-console
-import { console } from '@ephox/dom-globals';
+import { console, document } from '@ephox/dom-globals';
 import Editor from 'tinymce/core/api/Editor';
 
 declare const window: any;
@@ -62,26 +62,113 @@ export default function () {
   window.logPos = logPos;
 
   tinymce.init({
-    selector: 'textarea.tinymce',
-    skin_url: '../../../../js/tinymce/skins/ui/oxide',
-    add_unload_trigger: false,
-    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify' +
-    ' | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons table codesample',
-    plugins: ['paste', 'list'],
+    selector: '#tinymce1',
+    toolbar: false,
+    statusbar: false,
+    menubar: false,
+    skin: false,
+    plugins: 'paste noneditable',
+    paste_as_text: true,
+    smart_paste: false,
+    theme: false,
+    forced_root_block: false,
+    root_block: 'div',
+    inline: true,
+    visual: false,
+    browser_spellcheck: true,
     content_css: '../css/content_editable.css',
-    height: 400
+    height: 400,
   });
 
   tinymce.init({
-    selector: 'div.tinymce',
+    selector: '#tinymce2',
+    toolbar: false,
+    statusbar: false,
+    menubar: false,
+    skin: false,
+    plugins: 'paste noneditable',
+    paste_as_text: true,
+    smart_paste: false,
+    theme: false,
+    forced_root_block: false,
+    root_block: 'div',
     inline: true,
-    skin_url: '../../../../js/tinymce/skins/ui/oxide',
-    add_unload_trigger: false,
-    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify' +
-    ' | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons table codesample',
-    plugins: ['paste', 'list'],
-    content_css: '../css/content_editable.css'
+    visual: false,
+    browser_spellcheck: true,
+    content_css: '../css/content_editable.css',
+    // directionality: 'rtl',
+    // force_rtl: true,
+  });
+  tinymce.init({
+    selector: '#tinymce3',
+    toolbar: false,
+    statusbar: false,
+    menubar: false,
+    skin: false,
+    plugins: 'paste noneditable',
+    paste_as_text: true,
+    smart_paste: false,
+    theme: false,
+    forced_root_block: false,
+    root_block: 'div',
+    inline: true,
+    visual: false,
+    browser_spellcheck: true,
+    content_css: '../css/content_editable.css',
+    directionality: 'rtl',
   });
 
+  tinymce.init({
+    selector: '#tinymce4',
+    toolbar: false,
+    statusbar: false,
+    menubar: false,
+    skin: false,
+    plugins: 'paste noneditable',
+    paste_as_text: true,
+    smart_paste: false,
+    theme: false,
+    forced_root_block: false,
+    root_block: 'div',
+    inline: true,
+    visual: false,
+    browser_spellcheck: true,
+    content_css: '../css/content_editable.css',
+    directionality: 'ltr'
+  });
+
+  tinymce.init({
+    selector: '#tinymce5',
+    toolbar: false,
+    statusbar: false,
+    menubar: false,
+    skin: false,
+    plugins: 'paste noneditable',
+    paste_as_text: true,
+    smart_paste: false,
+    theme: false,
+    forced_root_block: false,
+    root_block: 'div',
+    inline: true,
+    visual: false,
+    browser_spellcheck: true,
+    content_css: '../css/content_editable.css',
+    directionality: 'rtl'
+  });
+
+  const button = document.createElement('button');
+  button.innerHTML = 'Toggle Directionality';
+  button.addEventListener('click', () => {
+    const c = tinymce.activeEditor.settings.directionality;
+    if (c === 'rtl') {
+      tinymce.activeEditor.settings.directionality = 'ltr';
+    } else {
+      tinymce.activeEditor.settings.directionality = 'rtl';
+    }
+    // tslint:disable no-console
+    console.log(tinymce.activeEditor.settings.directionality);
+    // tslint:enable no-console
+  });
+  document.body.appendChild(button);
   window.tinymce = tinymce;
 }
